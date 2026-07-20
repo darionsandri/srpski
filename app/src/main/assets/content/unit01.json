@@ -1,0 +1,89 @@
+{
+  "unitId": "u01",
+  "vocab": [
+    { "id": "voc_zdravo", "sr": "zdravo", "en": ["hello", "hi"], "tags": ["greetings"] },
+    { "id": "voc_cao", "sr": "ćao", "en": ["hi", "bye", "hello"], "notes": "Informal, used for hello and goodbye", "tags": ["greetings"] },
+    { "id": "voc_dobar_dan", "sr": "dobar dan", "en": ["good day", "good afternoon"], "tags": ["greetings"] },
+    { "id": "voc_dobro_jutro", "sr": "dobro jutro", "en": ["good morning"], "tags": ["greetings"] },
+    { "id": "voc_dobro_vece", "sr": "dobro veče", "en": ["good evening"], "tags": ["greetings"] },
+    { "id": "voc_dovidjenja", "sr": "doviđenja", "en": ["goodbye"], "tags": ["greetings"] },
+    { "id": "voc_laku_noc", "sr": "laku noć", "en": ["good night"], "tags": ["greetings"] },
+    { "id": "voc_kako_si", "sr": "kako si", "en": ["how are you"], "notes": "Informal singular", "tags": ["greetings"] },
+    { "id": "voc_dobro", "sr": "dobro", "en": ["good", "well", "fine"], "tags": ["basics"] },
+    { "id": "voc_hvala", "sr": "hvala", "en": ["thank you", "thanks"], "tags": ["basics"] },
+    { "id": "voc_ja_sam", "sr": "ja sam", "en": ["i am"], "tags": ["introductions"] },
+    { "id": "voc_ti_si", "sr": "ti si", "en": ["you are"], "notes": "Informal singular", "tags": ["introductions"] },
+    { "id": "voc_zovem_se", "sr": "zovem se", "en": ["my name is", "i am called"], "tags": ["introductions"] },
+    { "id": "voc_drago_mi_je", "sr": "drago mi je", "en": ["nice to meet you", "pleased to meet you"], "tags": ["introductions"] },
+    { "id": "voc_da", "sr": "da", "en": ["yes"], "tags": ["basics"] },
+    { "id": "voc_ne", "sr": "ne", "en": ["no", "not"], "tags": ["basics"] },
+    { "id": "voc_molim", "sr": "molim", "en": ["please", "you are welcome"], "notes": "Also used to answer the phone", "tags": ["basics"] },
+    { "id": "voc_izvini", "sr": "izvini", "en": ["sorry", "excuse me"], "notes": "Informal singular", "tags": ["basics"] },
+    { "id": "voc_gospodin", "sr": "gospodin", "en": ["mister", "gentleman"], "tags": ["introductions"] },
+    { "id": "voc_gospodja", "sr": "gospođa", "en": ["missis", "madam", "lady"], "tags": ["introductions"] },
+    { "id": "voc_ne_razumem", "sr": "ne razumem", "en": ["i do not understand", "i don't understand"], "tags": ["phrases"] },
+    { "id": "voc_polako", "sr": "polako", "en": ["slowly", "take it easy"], "tags": ["phrases"] },
+    { "id": "voc_gde_je", "sr": "gde je", "en": ["where is"], "tags": ["phrases"] },
+    { "id": "voc_koliko_kosta", "sr": "koliko košta", "en": ["how much does it cost", "how much is it"], "tags": ["phrases"] },
+    { "id": "voc_voda", "sr": "voda", "en": ["water"], "tags": ["food"] },
+    { "id": "voc_kafa", "sr": "kafa", "en": ["coffee"], "tags": ["food"] },
+    { "id": "voc_pivo", "sr": "pivo", "en": ["beer"], "tags": ["food"] },
+    { "id": "voc_racun", "sr": "račun", "en": ["the bill", "bill", "check", "the check"], "tags": ["phrases"] }
+  ],
+  "lessons": [
+    {
+      "id": "u01l01",
+      "title": "Pozdravi",
+      "exercises": [
+        { "id": "u01l01e01", "type": "multipleChoice", "promptSr": "zdravo", "options": ["hello", "goodbye", "please", "thank you"], "correctIndex": 0, "vocabRefs": ["voc_zdravo"] },
+        { "id": "u01l01e02", "type": "multipleChoice", "promptEn": "good day", "options": ["dobro jutro", "dobar dan", "laku noć", "doviđenja"], "correctIndex": 1, "vocabRefs": ["voc_dobar_dan"] },
+        { "id": "u01l01e03", "type": "wordBank", "promptEn": "good morning", "tiles": ["dobro", "jutro", "dan", "noć"], "accepted": ["dobro jutro"], "vocabRefs": ["voc_dobro_jutro"] },
+        { "id": "u01l01e04", "type": "typing", "promptEn": "good day", "accepted": ["dobar dan"], "vocabRefs": ["voc_dobar_dan"] },
+        { "id": "u01l01e05", "type": "multipleChoice", "promptSr": "doviđenja", "options": ["good night", "goodbye", "good evening", "hello"], "correctIndex": 1, "vocabRefs": ["voc_dovidjenja"] },
+        { "id": "u01l01e06", "type": "wordBank", "promptEn": "good night", "tiles": ["laku", "noć", "dobro", "veče"], "accepted": ["laku noć"], "vocabRefs": ["voc_laku_noc"] },
+        { "id": "u01l01e07", "type": "listening", "audioText": "dobro veče", "accepted": ["dobro veče"], "vocabRefs": ["voc_dobro_vece"] },
+        { "id": "u01l01e08", "type": "typing", "promptEn": "good evening", "accepted": ["dobro veče"], "vocabRefs": ["voc_dobro_vece"] },
+        { "id": "u01l01e09", "type": "fillBlank", "sentence": "Dobro ___! (said in the morning)", "options": ["jutro", "dan", "veče"], "correctIndex": 0, "vocabRefs": ["voc_dobro_jutro"] },
+        { "id": "u01l01e10", "type": "multipleChoice", "promptEn": "how are you", "options": ["kako si", "hvala", "zdravo", "dobro"], "correctIndex": 0, "vocabRefs": ["voc_kako_si"] },
+        { "id": "u01l01e11", "type": "wordBank", "promptEn": "How are you? Good, thanks.", "tiles": ["kako", "si", "dobro", "hvala", "zdravo"], "accepted": ["kako si dobro hvala"], "vocabRefs": ["voc_kako_si", "voc_dobro", "voc_hvala"] },
+        { "id": "u01l01e12", "type": "typing", "promptEn": "thank you", "accepted": ["hvala"], "vocabRefs": ["voc_hvala"] }
+      ]
+    },
+    {
+      "id": "u01l02",
+      "title": "Predstavljanje",
+      "exercises": [
+        { "id": "u01l02e01", "type": "multipleChoice", "promptSr": "ja sam", "options": ["you are", "i am", "he is", "we are"], "correctIndex": 1, "vocabRefs": ["voc_ja_sam"] },
+        { "id": "u01l02e02", "type": "multipleChoice", "promptEn": "yes", "options": ["ne", "da", "molim", "dobro"], "correctIndex": 1, "vocabRefs": ["voc_da"] },
+        { "id": "u01l02e03", "type": "typing", "promptEn": "no", "accepted": ["ne"], "vocabRefs": ["voc_ne"] },
+        { "id": "u01l02e04", "type": "wordBank", "promptEn": "My name is Marko.", "tiles": ["zovem", "se", "Marko", "ja", "sam"], "accepted": ["zovem se marko"], "vocabRefs": ["voc_zovem_se"] },
+        { "id": "u01l02e05", "type": "listening", "audioText": "drago mi je", "accepted": ["drago mi je"], "vocabRefs": ["voc_drago_mi_je"] },
+        { "id": "u01l02e06", "type": "multipleChoice", "promptSr": "drago mi je", "options": ["excuse me", "nice to meet you", "how are you", "you are welcome"], "correctIndex": 1, "vocabRefs": ["voc_drago_mi_je"] },
+        { "id": "u01l02e07", "type": "typing", "promptEn": "please", "accepted": ["molim"], "vocabRefs": ["voc_molim"] },
+        { "id": "u01l02e08", "type": "multipleChoice", "promptEn": "sorry", "options": ["izvini", "hvala", "molim", "polako"], "correctIndex": 0, "vocabRefs": ["voc_izvini"] },
+        { "id": "u01l02e09", "type": "wordBank", "promptEn": "I am Ana. Nice to meet you.", "tiles": ["ja", "sam", "Ana", "drago", "mi", "je"], "accepted": ["ja sam ana drago mi je"], "vocabRefs": ["voc_ja_sam", "voc_drago_mi_je"] },
+        { "id": "u01l02e10", "type": "fillBlank", "sentence": "___ se Jelena. (My name is Jelena.)", "options": ["Zovem", "Ja", "Ti"], "correctIndex": 0, "vocabRefs": ["voc_zovem_se"] },
+        { "id": "u01l02e11", "type": "multipleChoice", "promptSr": "gospođa", "options": ["mister", "madam", "girl", "boy"], "correctIndex": 1, "vocabRefs": ["voc_gospodja"] },
+        { "id": "u01l02e12", "type": "typing", "promptEn": "you are (informal)", "accepted": ["ti si"], "vocabRefs": ["voc_ti_si"] }
+      ]
+    },
+    {
+      "id": "u01l03",
+      "title": "Korisne fraze",
+      "exercises": [
+        { "id": "u01l03e01", "type": "multipleChoice", "promptSr": "ne razumem", "options": ["i don't know", "i don't understand", "i can't hear", "i don't want"], "correctIndex": 1, "vocabRefs": ["voc_ne_razumem"] },
+        { "id": "u01l03e02", "type": "typing", "promptEn": "slowly", "accepted": ["polako"], "vocabRefs": ["voc_polako"] },
+        { "id": "u01l03e03", "type": "multipleChoice", "promptEn": "water", "options": ["voda", "kafa", "pivo", "vino"], "correctIndex": 0, "vocabRefs": ["voc_voda"] },
+        { "id": "u01l03e04", "type": "wordBank", "promptEn": "Where is the coffee?", "tiles": ["gde", "je", "kafa", "voda"], "accepted": ["gde je kafa"], "vocabRefs": ["voc_gde_je", "voc_kafa"] },
+        { "id": "u01l03e05", "type": "listening", "audioText": "koliko košta", "accepted": ["koliko košta"], "vocabRefs": ["voc_koliko_kosta"] },
+        { "id": "u01l03e06", "type": "typing", "promptEn": "how much does it cost", "accepted": ["koliko košta"], "vocabRefs": ["voc_koliko_kosta"] },
+        { "id": "u01l03e07", "type": "multipleChoice", "promptSr": "račun", "options": ["the menu", "the bill", "the table", "the waiter"], "correctIndex": 1, "vocabRefs": ["voc_racun"] },
+        { "id": "u01l03e08", "type": "wordBank", "promptEn": "The bill, please.", "tiles": ["račun", "molim", "hvala", "pivo"], "accepted": ["račun molim"], "vocabRefs": ["voc_racun", "voc_molim"] },
+        { "id": "u01l03e09", "type": "fillBlank", "sentence": "Gde ___ voda? (Where is the water?)", "options": ["je", "si", "sam"], "correctIndex": 0, "vocabRefs": ["voc_gde_je", "voc_voda"] },
+        { "id": "u01l03e10", "type": "typing", "promptEn": "beer", "accepted": ["pivo"], "vocabRefs": ["voc_pivo"] },
+        { "id": "u01l03e11", "type": "wordBank", "promptEn": "I don't understand. Slowly, please.", "tiles": ["ne", "razumem", "polako", "molim", "hvala"], "accepted": ["ne razumem polako molim"], "vocabRefs": ["voc_ne_razumem", "voc_polako", "voc_molim"] },
+        { "id": "u01l03e12", "type": "listening", "audioText": "gde je pivo", "accepted": ["gde je pivo"], "vocabRefs": ["voc_gde_je", "voc_pivo"] }
+      ]
+    }
+  ]
+}

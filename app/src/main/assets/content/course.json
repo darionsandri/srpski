@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "course": "sr-latn-en",
+  "units": [
+    {
+      "id": "u01",
+      "title": "Osnove 1",
+      "cefr": "A1",
+      "description": "Greetings and first phrases",
+      "requiresUnit": null,
+      "lessons": ["u01l01", "u01l02", "u01l03"]
+    }
+  ]
+}

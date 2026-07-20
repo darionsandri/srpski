@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- INTERNET is only used by the future "Real Serbian" YouTube exercises -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:name=".SrpskiApp"
+        android:label="Srpski"
+        android:supportsRtl="false"
+        android:theme="@style/Theme.Srpski">
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
