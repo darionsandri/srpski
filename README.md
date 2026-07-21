@@ -1,5 +1,8 @@
 # Srpski — Serbian learning app (v0.1)
 
+[![Android CI](https://github.com/darionsandri/srpski/actions/workflows/android-ci.yml/badge.svg)](https://github.com/darionsandri/srpski/actions/workflows/android-ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Duolingo-style Serbian learning app. Latin script (latinica) only. Offline, no accounts.
 
 ## Open and run
@@ -25,13 +28,16 @@ Duolingo-style Serbian learning app. Latin script (latinica) only. Offline, no a
 - `data/` — Room (progress, SRS cards, daily XP) + JSON content loading.
 - `ui/` — Compose screens.
 
-## Run the domain tests
-./gradlew testDebugUnitTest
+## CI / Automated Builds
+A GitHub Action (`.github/workflows/android-ci.yml`) runs on every push and pull request to:
+1. Run all unit tests (`./gradlew testDebugUnitTest`)
+2. Build the debug APK (`./gradlew assembleDebug`) and upload it as a build artifact.
 
 ## Roadmap (from the planning docs)
 - M5 remainder: weak-words practice mode, grammar-targeted drills
 - M6: "Real Serbian" YouTube clip exercises (schema fields already present on ExerciseDef)
 - M7: backup/restore, polish
 
-## Note on the Gradle wrapper
-This zip ships without the wrapper binary. Android Studio will offer to use its bundled Gradle on first open — accept that, or run `gradle wrapper` once if you have Gradle installed.
+## License
+Distributed under the MIT License. See `LICENSE` for details.
+
