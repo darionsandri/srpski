@@ -14,8 +14,23 @@ android {
         applicationId = "com.srpski.app"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1"
+        versionCode = 2
+        versionName = "0.2-M6"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // YouTube Data API key (metadata enrichment for shared clips).
+        // Set via YOUTUBE_API_KEY env var or a `youtube.apiKey` gradle property.
+        val youtubeKey = providers.gradleProperty("youtube.apiKey").orNull
+            ?: providers.environmentVariable("YOUTUBE_API_KEY").orNull
+            ?: ""
+        buildConfigField("String", "YOUTUBE_API_KEY", "\"$youtubeKey\"")
+
+        // Base URL for the content pack index (GitHub Pages).
+        buildConfigField(
+            "String",
+            "CONTENT_PACK_INDEX_URL",
+            "\"https://darionsandri.github.io/srpski-content/packs/index.json\""
+        )
     }
 
     buildTypes {
@@ -32,6 +47,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -48,6 +64,15 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.androidx.datastore.preferences)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.okhttp)
+    implementation(libs.youtube.player.core)
+    implementation(libs.jsoup)
+
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.androidx.room.testing)
 }

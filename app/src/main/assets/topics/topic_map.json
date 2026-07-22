@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "topics": [
+    { "id": "music",     "label": "Music",     "keywords": ["muzika", "pesma", "album", "koncert", "band", "singer", "song"],                           "youtubeCategories": [10] },
+    { "id": "film",      "label": "Film & TV", "keywords": ["film", "serija", "glumac", "reditelj", "movie", "actor", "director", "trailer"],           "youtubeCategories": [1, 24] },
+    { "id": "sport",     "label": "Sports",    "keywords": ["fudbal", "kosarka", "utakmica", "tim", "meč", "match", "football", "basketball", "tennis"], "youtubeCategories": [17] },
+    { "id": "food",      "label": "Food",      "keywords": ["hrana", "recept", "kuvanje", "restoran", "food", "recipe", "cooking", "restaurant"],       "youtubeCategories": [26] },
+    { "id": "travel",    "label": "Travel",    "keywords": ["putovanje", "grad", "planina", "more", "travel", "trip", "vacation", "beach"],             "youtubeCategories": [19] },
+    { "id": "tech",      "label": "Tech",      "keywords": ["tehnologija", "kompjuter", "software", "aplikacija", "technology", "coding", "programming"], "youtubeCategories": [28] },
+    { "id": "news",      "label": "News",      "keywords": ["vesti", "politika", "svet", "news", "politics", "current", "affair"],                       "youtubeCategories": [25] },
+    { "id": "history",   "label": "History",   "keywords": ["istorija", "srednji", "vek", "kralj", "history", "medieval", "ancient", "empire"],         "youtubeCategories": [27] },
+    { "id": "science",   "label": "Science",   "keywords": ["nauka", "biologija", "fizika", "hemija", "science", "biology", "physics", "chemistry"],    "youtubeCategories": [28] },
+    { "id": "humor",     "label": "Comedy",    "keywords": ["šala", "smeh", "komedija", "vic", "funny", "comedy", "joke"],                              "youtubeCategories": [23] },
+    { "id": "gaming",    "label": "Gaming",    "keywords": ["igra", "gejming", "playstation", "gaming", "esports", "twitch"],                            "youtubeCategories": [20] },
+    { "id": "culture",   "label": "Culture",   "keywords": ["kultura", "tradicija", "folklor", "culture", "tradition", "folk"],                          "youtubeCategories": [24] },
+    { "id": "business",  "label": "Business",  "keywords": ["biznis", "posao", "kompanija", "business", "startup", "finance"],                          "youtubeCategories": [25] },
+    { "id": "art",       "label": "Art",       "keywords": ["umetnost", "slika", "galerija", "art", "painting", "gallery"],                              "youtubeCategories": [24] },
+    { "id": "lifestyle", "label": "Lifestyle", "keywords": ["život", "moda", "zdravlje", "lifestyle", "fashion", "health"],                              "youtubeCategories": [22] }
+  ]
+}

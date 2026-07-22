@@ -33,6 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.srpski.app.data.model.ExerciseDef
 import com.srpski.app.domain.GradeResult
+import com.srpski.app.ui.media.YouTubeClipPlayer
 import com.srpski.app.ui.theme.CorrectGreen
 import com.srpski.app.ui.theme.WrongRed
 
@@ -65,6 +66,9 @@ fun LessonScreen(viewModel: LessonViewModel, onExit: () -> Unit) {
                 "wordBank" -> WordBankExercise(exercise, state, viewModel)
                 "typing" -> TypingExercise(exercise, state, viewModel)
                 "listening" -> ListeningExercise(exercise, state, viewModel)
+                "videoTranslate" -> VideoTranslateExercise(exercise, state, viewModel)
+                "videoGist" -> VideoGistExercise(exercise, state, viewModel)
+                "videoCloze" -> VideoClozeExercise(exercise, state, viewModel)
                 else -> Text("Unsupported exercise type: ${exercise.type}")
             }
         }
@@ -180,6 +184,85 @@ private fun ListeningExercise(exercise: ExerciseDef, state: LessonUiState, viewM
         onValueChange = { input = it },
         modifier = Modifier.fillMaxWidth(),
         label = { Text("Type in Serbian") },
+        enabled = state.feedback == null
+    )
+    Spacer(Modifier.height(12.dp))
+    Button(
+        enabled = input.isNotBlank() && state.feedback == null,
+        onClick = { viewModel.submitText(input) }
+    ) { Text("Check") }
+}
+
+@Composable
+private fun VideoTranslateExercise(exercise: ExerciseDef, state: LessonUiState, viewModel: LessonViewModel) {
+    val videoId = exercise.youtubeId
+    if (videoId == null) { Text("Missing video reference"); return }
+    Text("Translate what you hear in the clip", style = MaterialTheme.typography.labelLarge)
+    Spacer(Modifier.height(12.dp))
+    YouTubeClipPlayer(videoId = videoId, startSec = exercise.startSec, endSec = exercise.endSec)
+    Spacer(Modifier.height(16.dp))
+    var input by remember { mutableStateOf("") }
+    OutlinedTextField(
+        value = input,
+        onValueChange = { input = it },
+        modifier = Modifier.fillMaxWidth(),
+        label = { Text("Type in Serbian") },
+        enabled = state.feedback == null
+    )
+    Spacer(Modifier.height(12.dp))
+    Button(
+        enabled = input.isNotBlank() && state.feedback == null,
+        onClick = { viewModel.submitText(input) }
+    ) { Text("Check") }
+}
+
+@Composable
+private fun VideoGistExercise(exercise: ExerciseDef, state: LessonUiState, viewModel: LessonViewModel) {
+    val videoId = exercise.youtubeId
+    if (videoId == null) { Text("Missing video reference"); return }
+    Text(exercise.promptEn ?: "What is this clip about?", style = MaterialTheme.typography.labelLarge)
+    Spacer(Modifier.height(12.dp))
+    YouTubeClipPlayer(videoId = videoId, startSec = exercise.startSec, endSec = exercise.endSec)
+    Spacer(Modifier.height(16.dp))
+    exercise.options.forEachIndexed { i, option ->
+        OutlinedButton(
+            onClick = { if (state.feedback == null) viewModel.submitChoice(i) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp)
+        ) { Text(option) }
+    }
+}
+
+@Composable
+private fun VideoClozeExercise(exercise: ExerciseDef, state: LessonUiState, viewModel: LessonViewModel) {
+    val videoId = exercise.youtubeId
+    if (videoId == null) { Text("Missing video reference"); return }
+    Text("Fill in the missing word", style = MaterialTheme.typography.labelLarge)
+    Spacer(Modifier.height(12.dp))
+    YouTubeClipPlayer(videoId = videoId, startSec = exercise.startSec, endSec = exercise.endSec)
+    Spacer(Modifier.height(16.dp))
+    val transcript = exercise.transcriptSr ?: exercise.sentence.orEmpty()
+    if (transcript.isNotBlank()) {
+        Surface(
+            shape = RoundedCornerShape(12.dp),
+            color = MaterialTheme.colorScheme.surfaceVariant,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                transcript,
+                modifier = Modifier.padding(12.dp),
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
+        Spacer(Modifier.height(12.dp))
+    }
+    var input by remember { mutableStateOf("") }
+    OutlinedTextField(
+        value = input,
+        onValueChange = { input = it },
+        modifier = Modifier.fillMaxWidth(),
+        label = { Text("Missing word") },
         enabled = state.feedback == null
     )
     Spacer(Modifier.height(12.dp))

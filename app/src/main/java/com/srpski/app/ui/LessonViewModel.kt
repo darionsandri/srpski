@@ -43,16 +43,35 @@ class LessonViewModel(
 
     init {
         viewModelScope.launch {
-            val lesson = app.content.lesson(lessonId)
-            val dueVocab = app.progress.dueVocabIds(SessionBuilder.MAX_REVIEWS)
-                .mapNotNull { app.content.vocabById[it] }
-            val session = SessionBuilder.build(
-                lessonExercises = lesson?.exercises ?: emptyList(),
-                dueVocab = dueVocab,
-                vocabPool = app.content.vocabById.values.toList()
-            )
+            val session = if (lessonId == WEAK_WORDS_ID) buildWeakWordsSession() else buildLessonSession()
             _state.value = LessonUiState(loading = false, exercises = session)
         }
+    }
+
+    private suspend fun buildLessonSession(): List<com.srpski.app.data.model.ExerciseDef> {
+        val lesson = app.content.lesson(lessonId)
+        val dueVocab = app.progress.dueVocabIds(SessionBuilder.MAX_REVIEWS)
+            .mapNotNull { app.content.vocabById[it] }
+        return SessionBuilder.build(
+            lessonExercises = lesson?.exercises ?: emptyList(),
+            dueVocab = dueVocab,
+            vocabPool = app.content.vocabById.values.toList()
+        )
+    }
+
+    private suspend fun buildWeakWordsSession(): List<com.srpski.app.data.model.ExerciseDef> {
+        val weak = app.progress.weakestVocabIds(WEAK_WORDS_LIMIT)
+            .mapNotNull { app.content.vocabById[it] }
+        return SessionBuilder.buildWeakWords(
+            weakVocab = weak,
+            vocabPool = app.content.vocabById.values.toList(),
+            maxItems = WEAK_WORDS_LIMIT
+        )
+    }
+
+    companion object {
+        const val WEAK_WORDS_ID = "__weak__"
+        const val WEAK_WORDS_LIMIT = 10
     }
 
     fun speak(text: String, slow: Boolean = false) = app.tts.speak(text, slow)
@@ -117,7 +136,9 @@ class LessonViewModel(
             )
             return
         }
-        viewModelScope.launch { app.progress.recordLessonComplete(lessonId) }
+        if (lessonId != WEAK_WORDS_ID) {
+            viewModelScope.launch { app.progress.recordLessonComplete(lessonId) }
+        }
         _state.value = s.copy(finished = true, feedback = null)
     }
 }

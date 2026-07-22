@@ -1,0 +1,11 @@
+{
+  "id": "gr_greetings_time",
+  "title": "Greetings by time of day",
+  "body": "Serbian greetings shift with the clock. Use **dobro jutro** in the morning, **dobar dan** during the day, and **dobro veče** in the evening. **Laku noć** is reserved for saying goodnight before sleep — not a general goodbye.",
+  "vocabRefs": ["voc_dobro_jutro", "voc_dobar_dan", "voc_dobro_vece", "voc_laku_noc"],
+  "examples": [
+    { "sr": "Dobro jutro!", "en": "Good morning!" },
+    { "sr": "Dobar dan.", "en": "Good day." },
+    { "sr": "Laku noć.", "en": "Good night." }
+  ]
+}

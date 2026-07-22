@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
@@ -30,7 +31,13 @@ import androidx.compose.ui.unit.dp
 import com.srpski.app.SrpskiApp
 
 @Composable
-fun SkillTreeScreen(app: SrpskiApp, onOpenLesson: (String) -> Unit) {
+fun SkillTreeScreen(
+    app: SrpskiApp,
+    onOpenLesson: (String) -> Unit,
+    onOpenInterests: () -> Unit = {},
+    onOpenPacks: () -> Unit = {},
+    onOpenAchievements: () -> Unit = {}
+) {
     val progress by app.progress.lessonProgressFlow().collectAsState(initial = emptyList())
     val completedIds = progress.filter { it.completedCount > 0 }.map { it.lessonId }.toSet()
 
@@ -52,13 +59,39 @@ fun SkillTreeScreen(app: SrpskiApp, onOpenLesson: (String) -> Unit) {
             Text("Streak $streak  ·  $todayXp XP today", style = MaterialTheme.typography.labelLarge)
         }
         Spacer(Modifier.height(4.dp))
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("Strict accents", style = MaterialTheme.typography.labelMedium)
-            Spacer(Modifier.padding(horizontal = 4.dp))
-            Switch(checked = strict, onCheckedChange = {
-                strict = it
-                app.strictDiacritics = it
-            })
+        Row(
+            Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("Strict accents", style = MaterialTheme.typography.labelMedium)
+                Spacer(Modifier.padding(horizontal = 4.dp))
+                Switch(checked = strict, onCheckedChange = {
+                    strict = it
+                    app.strictDiacritics = it
+                })
+            }
+            Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                OutlinedButton(onClick = onOpenAchievements) { Text("Trophies") }
+                OutlinedButton(onClick = onOpenInterests) { Text("What I like") }
+                OutlinedButton(onClick = onOpenPacks) { Text("Packs") }
+            }
+        }
+        Spacer(Modifier.height(12.dp))
+
+        Card(Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
+            Column(Modifier.padding(16.dp)) {
+                Text("Practice weak words", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
+                Text(
+                    "Review the vocab you get wrong most often.",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Spacer(Modifier.height(8.dp))
+                Button(onClick = { onOpenLesson(com.srpski.app.ui.LessonViewModel.WEAK_WORDS_ID) }) {
+                    Text("Start")
+                }
+            }
         }
         Spacer(Modifier.height(12.dp))
 
